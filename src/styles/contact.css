@@ -1,0 +1,266 @@
+/* ══════════════════════════════════════════
+   CONTACT SECTION
+══════════════════════════════════════════ */
+
+.contact-section {
+    position: relative;
+    background: #f2f2f2;
+    padding: 100px 0 60px;
+    z-index: 1;
+    /* Below the experience section to catch its shadow, or we use inset shadow */
+    box-shadow: inset 0 100px 120px -80px rgba(0, 0, 0, 0.15);
+    /* Soft shadow from top */
+    color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+}
+
+/* Badge */
+.contact-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #ffffff;
+    border-radius: 40px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    /* Optional subtle border or shadow */
+    /* border: 1px solid rgba(0, 0, 0, 0.05); */
+}
+
+.contact-badge-dot {
+    width: 8px;
+    height: 8px;
+    background: #22c55e;
+    border-radius: 50%;
+}
+
+/* Typography */
+.contact-heading {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+    letter-spacing: -0.02em;
+}
+
+.contact-text {
+    font-size: clamp(16px, 2vw, 20px);
+    color: #666;
+    max-width: 700px;
+    text-align: center;
+    line-height: 1.6;
+    margin: 0 auto 40px;
+}
+
+/* CTA */
+.contact-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #1a1a1a;
+    color: #ffffff;
+    padding: 14px 28px;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.contact-cta:hover {
+    background: #000000;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.25);
+}
+
+.contact-cta-icon {
+    transition: transform 0.3s ease;
+}
+
+.contact-cta:hover .contact-cta-icon {
+    transform: translate(2px, -2px);
+}
+
+/* Bottom Links Wrapper */
+.contact-bottom-links {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+    margin-top: 100px;
+    /* Space between CTA and footer links */
+}
+
+/* Profile btn */
+.contact-profile-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #1a1a1a;
+    padding: 6px 20px 6px 6px;
+    border-radius: 40px;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.contact-profile-btn:hover {
+    transform: translateY(-2px);
+}
+
+.contact-profile-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.contact-profile-name {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Social links container */
+.contact-socials {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Social buttons */
+/* Social buttons */
+.contact-social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fdfdfd;
+    color: #1a1a1a;
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    /* slight grey border */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, background 0.4s ease, color 0.4s ease;
+}
+
+.contact-social-btn svg {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.contact-social-btn:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    background: #1a1a1a;
+    color: #ffffff;
+    border-color: #1a1a1a;
+}
+
+.contact-social-btn:hover svg {
+    transform: scale(1.15) rotate(5deg);
+}
+
+/* ════════════════════════════════════════
+   MOBILE
+════════════════════════════════════════ */
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 80px 0 40px;
+    }
+
+    .contact-bottom-links {
+        flex-direction: column;
+        gap: 24px;
+        margin-top: 60px;
+    }
+
+    .contact-social-label {
+        display: none;
+    }
+
+    .contact-social-btn {
+        padding: 10px;
+        /* Adjust padding for just icon */
+        border-radius: 50%;
+        /* Make it perfectly round */
+    }
+}
+
+/* Footer Text */
+.contact-footer-text {
+    width: 100%;
+    margin-top: 60px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.8;
+}
+
+.contact-footer-text p {
+    margin: 4px 0;
+}
+
+/* ── Scroll to Top Button ── */
+.contact-scroll-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 60px;
+    height: 60px;
+    background: #1a1a1a;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    z-index: 300;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+    /* Hidden by default via transform and opacity */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(40px) scale(0.8);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.contact-scroll-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.contact-scroll-top:hover {
+    transform: translateY(-4px) scale(1.05);
+    background: #000000;
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile Adjustments for Scroll to Top Button */
+@media (max-width: 768px) {
+    .contact-scroll-top {
+        bottom: 24px;
+        right: 24px;
+        width: 50px;
+        height: 50px;
+    }
+}

@@ -1,0 +1,178 @@
+/* ══════════════════════════════════════════
+   SERVICES SECTION
+══════════════════════════════════════════ */
+
+.services-section {
+    position: relative;
+    background: #f4f4f4;
+    padding: 80px 0 100px;
+    overflow: hidden;
+}
+
+/* Watermark */
+.services-watermark {
+    position: absolute;
+    top: 0px;
+    left: 130px;
+    font-size: clamp(80px, 14vw, 170px);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: rgba(0, 0, 0, 0.06);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    line-height: 1;
+}
+
+/* Heading */
+.services-heading {
+    font-size: clamp(24px, 4vw, 42px);
+    font-weight: 700;
+    margin-top: 58px;
+    margin-bottom: 70px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Inner wrapper — relative for floating image */
+.services-inner {
+    position: relative;
+}
+
+/* ── Floating image (appears above current hovered row) ── */
+.services-float-image {
+    position: absolute;
+    top: 50%;
+    right: 80px;
+    width: 260px;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(-50%) translateX(20px) scale(0.94);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.services-float-image.visible {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0) scale(1);
+}
+
+.services-float-image img {
+    width: 100%;
+    filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.45));
+    border-radius: 12px;
+}
+
+/* ── Service rows ── */
+.services-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    z-index: 2;
+}
+
+.services-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 32px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    cursor: pointer;
+    background: transparent;
+    transition: background 0.3s ease, padding 0.3s ease;
+    /* overflow: hidden; Removed to allow image to float over */
+}
+
+.services-item:first-child {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Hovered row → black */
+.services-item.hovered {
+    background: #1a1a1a;
+    border-color: transparent;
+    padding: 36px 32px;
+    z-index: 10;
+    /* Ensure hovered row and its image are on top */
+}
+
+/* Row content */
+.services-item-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.services-item-title {
+    font-size: clamp(22px, 3.5vw, 42px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    transition: color 0.3s ease;
+    line-height: 1.1;
+}
+
+.services-item.hovered .services-item-title {
+    color: #ffffff;
+}
+
+/* Description — hidden by default, slides in on hover */
+.services-item-desc {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+    max-width: 380px;
+    line-height: 1.6;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, opacity 0.35s ease, margin-top 0.3s ease;
+}
+
+.services-item.hovered .services-item-desc {
+    max-height: 80px;
+    opacity: 1;
+    margin-top: 10px;
+}
+
+/* Arrow */
+.services-item-arrow {
+    font-size: 24px;
+    color: var(--color-text);
+    flex-shrink: 0;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.services-item.hovered .services-item-arrow {
+    color: #ffffff;
+    transform: rotate(0deg);
+}
+
+/* ════════════════════════════════════════
+   MOBILE
+════════════════════════════════════════ */
+@media (max-width: 768px) {
+    .services-section {
+        padding: 60px 0 80px;
+    }
+
+    .services-float-image {
+        display: none;
+    }
+
+    .services-item {
+        padding: 20px 16px;
+    }
+
+    .services-item.hovered {
+        padding: 28px 16px;
+    }
+
+    .services-watermark {
+        top: 60px;
+        left: 0px;
+    }
+}

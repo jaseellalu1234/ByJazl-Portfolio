@@ -1,0 +1,42 @@
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-primary);
+  background: var(--color-bg);
+  color: var(--color-text);
+  overflow-x: hidden;
+}
+
+/* Nav anchor link resets */
+.hero-bottom-nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.mobile-nav-drawer a {
+  color: #000;
+  text-decoration: none;
+}
+
+@font-face {
+  font-family: "HeroFont-outline";
+  src: url("../assets/fonts/Overcame-outline.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "HeroFont";
+  src: url("../assets/fonts/Overcame-Regular.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}

@@ -1,0 +1,189 @@
+/* ══════════════════════════════════════════
+   EXPERIENCE SECTION
+══════════════════════════════════════════ */
+
+.experience-section {
+    position: relative;
+    background: #252525;
+    padding: 80px 0 100px;
+    overflow: hidden;
+    color: #ffffff;
+}
+
+/* Watermark */
+.experience-watermark {
+    position: absolute;
+    top: 40px;
+    left: 80px;
+    font-size: clamp(80px, 14vw, 170px);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.03);
+    /* Subtle watermark */
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    line-height: 1;
+}
+
+/* Header */
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 58px;
+    margin-bottom: 70px;
+    position: relative;
+    z-index: 1;
+}
+
+.experience-heading {
+    font-size: clamp(24px, 4vw, 42px);
+    font-weight: 700;
+}
+
+.experience-years {
+    font-size: clamp(14px, 1.5vw, 18px);
+    color: #eaeaea;
+}
+
+/* Inner wrapper — relative for floating image */
+.experience-inner {
+    position: relative;
+}
+
+/* ── Floating image ── */
+.experience-float-image {
+    position: absolute;
+    top: 50%;
+    right: 80px;
+    width: 260px;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(-50%) translateX(20px) scale(0.94);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.experience-float-image.visible {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0) scale(1);
+}
+
+.experience-float-image img {
+    width: 100%;
+    filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.45));
+    border-radius: 12px;
+}
+
+/* ── Experience rows ── */
+.experience-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    z-index: 2;
+}
+
+.experience-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 32px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    /* No border-radius in design, it's straight lines */
+    cursor: pointer;
+    background: transparent;
+    transition: background 0.3s ease, padding 0.3s ease;
+}
+
+.experience-item:first-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Hovered row → lighter grey, or darker based on design? It looks like it stays dark but changes subtle */
+.experience-item.hovered {
+    background: #1a1a1a;
+    border-color: transparent;
+    padding: 36px 32px;
+    z-index: 10;
+}
+
+/* Row content */
+.experience-item-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.experience-item-title {
+    font-size: clamp(18px, 2.5vw, 24px);
+    font-weight: 500;
+    color: #ffffff;
+    transition: color 0.3s ease;
+    line-height: 1.1;
+}
+
+.experience-item-role {
+    font-size: clamp(14px, 1.5vw, 16px);
+    color: rgba(255, 255, 255, 0.5);
+    transition: color 0.3s ease;
+}
+
+.experience-item.hovered .experience-item-title,
+.experience-item.hovered .experience-item-role {
+    color: #ffffff;
+}
+
+/* Duration */
+.experience-item-duration {
+    font-size: clamp(14px, 1.5vw, 16px);
+    color: rgba(255, 255, 255, 0.5);
+    transition: color 0.3s ease;
+}
+
+.experience-item.hovered .experience-item-duration {
+    color: #ffffff;
+}
+
+/* ════════════════════════════════════════
+   MOBILE
+════════════════════════════════════════ */
+@media (max-width: 768px) {
+    .experience-section {
+        padding: 60px 0 80px;
+    }
+
+    .experience-watermark {
+        top: 20px;
+        left: 0px;
+        font-size: clamp(40px, 14vw, 80px);
+        /* Adjust mobile size */
+    }
+
+    .experience-header {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+    }
+
+    .experience-float-image {
+        display: none;
+    }
+
+    .experience-item {
+        padding: 24px 16px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .experience-item.hovered {
+        padding: 24px 16px;
+    }
+
+    .experience-item-duration {
+        align-self: flex-start;
+    }
+}

@@ -1,0 +1,22 @@
+/* Reset Vite defaults — custom layout is handled in layout.css */
+#root {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.section {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* ── Page intro black overlay ── */
+.page-intro-overlay {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 9999;
+  pointer-events: all;
+}

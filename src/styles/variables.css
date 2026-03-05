@@ -1,0 +1,45 @@
+:root {
+  /* COLORS */
+  --color-bg: #ffffff; /* Page background */
+  --color-text: #111111; /* Main text / buttons */
+  --color-muted: #777777; /* Secondary text */
+  --color-border: #eaeaea; /* Borders / subtle lines */
+
+  /* GLASSMORPHISM */
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.2);
+
+  /* SPACING SYSTEM */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 40px;
+  --space-xl: 64px;
+
+  /* RADIUS SYSTEM */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-pill: 999px;
+
+  /* FONT FAMILY */
+  --font-primary: "Inter", sans-serif;
+
+  /* FONT SIZES */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-md: 16px;
+  --text-lg: 20px;
+  --text-xl: 28px;
+  --text-hero: 270px;
+
+  /* FONT WEIGHTS */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* LINE HEIGHTS */
+  --line-tight: 1.1;
+  --line-normal: 1.5;
+  --line-relaxed: 1.7;
+}
