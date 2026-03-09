@@ -702,7 +702,7 @@
 
   .mobile-nav-close {
     position: absolute;
-    top: 16px;
+    top: calc(16px + env(safe-area-inset-top, 0px));
     right: 16px;
     background: var(--color-text);
     color: white;
