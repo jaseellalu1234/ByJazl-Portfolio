@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import project1 from "../assets/images/project-1.png";
 import project2 from "../assets/images/project-2.png";
 import "../styles/works.css";
@@ -11,6 +11,10 @@ const projects = [
         image: project1,
         categories: ["Web Designing"],
         links: ["Landing Page", "Demo"],
+        description:
+            "A modern, responsive landing page for Voyon Folks' HRMS web application. Focused on clear hierarchy, conversion-driven layout, and clean UI patterns.",
+        year: "2024",
+        role: "UI Designer & Developer",
     },
     {
         id: 2,
@@ -19,6 +23,10 @@ const projects = [
         image: project2,
         categories: ["Web Designing"],
         links: ["Landing Page", "Demo"],
+        description:
+            "Second iteration of the HRMS landing page with refined visual language, improved mobile responsiveness, and enhanced CTA flow.",
+        year: "2024",
+        role: "UI Designer & Developer",
     },
     {
         id: 3,
@@ -27,6 +35,10 @@ const projects = [
         image: project1,
         categories: ["Web Designing"],
         links: ["Live Site", "Case Study"],
+        description:
+            "Full brand identity system and portfolio website for a creative director. Includes typography system, color palette, and a bespoke portfolio layout.",
+        year: "2024",
+        role: "Brand Designer",
     },
     {
         id: 4,
@@ -35,6 +47,10 @@ const projects = [
         image: project2,
         categories: ["Web Designing", "Video Editing"],
         links: ["Landing Page", "Demo"],
+        description:
+            "High-fidelity e-commerce UI for a fashion brand. Features editorial-style product display, smooth transitions, and a full video campaign.",
+        year: "2024",
+        role: "UI Designer & Video Editor",
     },
 ];
 
@@ -42,11 +58,41 @@ const filters = ["All", "Web Designing", "Video Editing"];
 
 function Works() {
     const [active, setActive] = useState("All");
+    const [selected, setSelected] = useState(null);
+    const [panelVisible, setPanelVisible] = useState(false);
+
+    // Prevent body scroll when panel is visible
+    useEffect(() => {
+        if (panelVisible) {
+            document.body.style.overflow = "hidden";
+            document.documentElement.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+            document.documentElement.style.overflow = "";
+        }
+        return () => {
+            document.body.style.overflow = "";
+            document.documentElement.style.overflow = "";
+        };
+    }, [panelVisible]);
 
     const filtered =
         active === "All"
             ? projects
             : projects.filter((p) => p.categories.includes(active));
+
+    const openPanel = (project) => {
+        setSelected(project);
+        // Small delay so React renders the panel before CSS transition fires
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => setPanelVisible(true));
+        });
+    };
+
+    const closePanel = () => {
+        setPanelVisible(false);
+        setTimeout(() => setSelected(null), 500); // match transition duration
+    };
 
     return (
         <section className="works-section" id="works">
@@ -78,7 +124,11 @@ function Works() {
                 {/* Grid */}
                 <div className="works-grid">
                     {filtered.map((project) => (
-                        <div key={project.id} className="works-card">
+                        <div
+                            key={project.id}
+                            className="works-card"
+                            onClick={() => openPanel(project)}
+                        >
                             <div className="works-card-image">
                                 <span className="works-card-tag">{project.tag}</span>
                                 <img src={project.image} alt={project.title} />
@@ -97,6 +147,55 @@ function Works() {
                     ))}
                 </div>
             </div>
+
+            {/* ── Detail Panel ── */}
+            {selected && (
+                <>
+                    {/* Backdrop blur overlay */}
+                    <div
+                        className={`works-backdrop${panelVisible ? " works-backdrop--visible" : ""}`}
+                        onClick={closePanel}
+                    />
+
+                    {/* Slide panel */}
+                    <div className={`works-panel${panelVisible ? " works-panel--visible" : ""}`}>
+                        {/* Close button */}
+                        <button className="works-panel-close" onClick={closePanel} aria-label="Close">
+                            ✕
+                        </button>
+
+                        <div className={`works-panel-content${panelVisible ? " works-panel-content--visible" : ""}`}>
+                            {/* Project image */}
+                            <div className="works-panel-image">
+                                <img src={selected.image} alt={selected.title} />
+                                <span className="works-panel-tag">{selected.tag}</span>
+                            </div>
+
+                            {/* Meta row */}
+                            <div className="works-panel-meta">
+                                <span>{selected.year}</span>
+                                <span className="works-panel-dot">·</span>
+                                <span>{selected.role}</span>
+                            </div>
+
+                            {/* Title */}
+                            <h2 className="works-panel-title">{selected.title}</h2>
+
+                            {/* Description */}
+                            <p className="works-panel-desc">{selected.description}</p>
+
+                            {/* Link pills */}
+                            <div className="works-panel-links">
+                                {selected.links.map((link) => (
+                                    <a key={link} href="#" className="works-panel-pill">
+                                        {link} <span>↗</span>
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </>
+            )}
         </section>
     );
 }

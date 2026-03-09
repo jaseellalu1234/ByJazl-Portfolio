@@ -224,4 +224,192 @@
         align-self: stretch;
         justify-content: center;
     }
+
+    /* Panel full-width on mobile */
+    .works-panel {
+        width: 100% !important;
+        max-width: 100% !important;
+        bottom: 0;
+        top: auto !important;
+        height: 90vh;
+        border-radius: 20px 20px 0 0 !important;
+        transform: translateY(100%) !important;
+    }
+
+    .works-panel--visible {
+        transform: translateY(0) !important;
+    }
+}
+
+/* ════════════════════════════════════════
+   DETAIL PANEL
+════════════════════════════════════════ */
+
+/* Backdrop */
+.works-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 400;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.works-backdrop--visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Panel */
+.works-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(580px, 92vw);
+    height: 100vh;
+    background: #fff;
+    z-index: 500;
+    border-radius: 24px 0 0 24px;
+    box-shadow: -8px 0 48px rgba(0, 0, 0, 0.18);
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    scrollbar-width: none;
+}
+
+.works-panel::-webkit-scrollbar {
+    display: none;
+}
+
+.works-panel--visible {
+    transform: translateX(0);
+}
+
+/* Close button */
+.works-panel-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(0, 0, 0, 0.12);
+    background: white;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.works-panel-close:hover {
+    background: #1a1a1a;
+    color: white;
+    border-color: #1a1a1a;
+}
+
+/* Panel content — fades + slides up after panel arrives */
+.works-panel-content {
+    padding: 36px 30px 48px;
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.4s ease 0.15s, transform 0.4s ease 0.15s;
+}
+
+.works-panel-content--visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Image */
+.works-panel-image {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 22px;
+    aspect-ratio: 16 / 10;
+}
+
+.works-panel-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.works-panel-tag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: white;
+    border-radius: 30px;
+    padding: 4px 12px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* Meta row */
+.works-panel-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.works-panel-dot {
+    font-size: 18px;
+    line-height: 1;
+    color: #ccc;
+}
+
+/* Title */
+.works-panel-title {
+    font-size: clamp(18px, 3vw, 24px);
+    font-weight: 700;
+    line-height: 1.35;
+    color: #1a1a1a;
+    margin-bottom: 14px;
+}
+
+/* Description */
+.works-panel-desc {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 28px;
+}
+
+/* Link pills */
+.works-panel-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.works-panel-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1.5px solid #1a1a1a;
+    border-radius: 30px;
+    padding: 8px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a1a;
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.works-panel-pill:hover {
+    background: #1a1a1a;
+    color: white;
 }
