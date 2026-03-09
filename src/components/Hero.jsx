@@ -4,12 +4,82 @@ import PageIntro from "./PageIntro";
 import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 
+const TITLES = ["UI Developer", "React Developer", "Creative Designer"];
+
 function Hero() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [navDark, setNavDark] = useState(false);
   const [navHidden, setNavHidden] = useState(false);
   const hasPlayed = sessionStorage.getItem("introPlayed");
+
+  // Parallax image effect
+  const parallaxRef = useRef(null);
+  const mouse = useRef({ x: 0, y: 0 });
+  const current = useRef({ x: 0, y: 0 });
+  const rafId = useRef(null);
+
+  useEffect(() => {
+    const onMove = (e) => {
+      // Normalize to -1 → 1 based on viewport center
+      mouse.current.x = (e.clientX / window.innerWidth - 0.5) * 2;
+      mouse.current.y = (e.clientY / window.innerHeight - 0.5) * 2;
+    };
+
+    const animate = () => {
+      // Smooth lerp (ease factor 0.06 = gentle lag)
+      current.current.x += (mouse.current.x - current.current.x) * 0.06;
+      current.current.y += (mouse.current.y - current.current.y) * 0.06;
+
+      if (parallaxRef.current) {
+        const rotateY = current.current.x * 8;   // max ±8deg
+        const rotateX = -current.current.y * 5;  // max ±5deg
+        const tx = current.current.x * 12;       // max ±12px translate
+        const ty = current.current.y * 8;        // max ±8px translate
+        parallaxRef.current.style.transform =
+          `perspective(900px) rotateY(${rotateY}deg) rotateX(${rotateX}deg) translate(${tx}px, ${ty}px)`;
+      }
+
+      rafId.current = requestAnimationFrame(animate);
+    };
+
+    window.addEventListener("mousemove", onMove);
+    rafId.current = requestAnimationFrame(animate);
+
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      cancelAnimationFrame(rafId.current);
+    };
+  }, []);
+
+  // Typing animation state
+  const [titleIndex, setTitleIndex] = useState(0);
+  const [displayed, setDisplayed] = useState("");
+  const [phase, setPhase] = useState("typing"); // "typing" | "pausing" | "erasing"
+
+  useEffect(() => {
+    const current = TITLES[titleIndex];
+    let timeout;
+
+    if (phase === "typing") {
+      if (displayed.length < current.length) {
+        timeout = setTimeout(() => setDisplayed(current.slice(0, displayed.length + 1)), 80);
+      } else {
+        timeout = setTimeout(() => setPhase("pausing"), 1500);
+      }
+    } else if (phase === "pausing") {
+      timeout = setTimeout(() => setPhase("erasing"), 400);
+    } else if (phase === "erasing") {
+      if (displayed.length > 0) {
+        timeout = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 45);
+      } else {
+        setTitleIndex((i) => (i + 1) % TITLES.length);
+        setPhase("typing");
+      }
+    }
+
+    return () => clearTimeout(timeout);
+  }, [displayed, phase, titleIndex]);
 
   // Refs for GSAP targets
   const logoRef = useRef(null);
@@ -156,7 +226,14 @@ function Hero() {
                 <span className="hero-by">BY</span>
                 <span className="hero-name">JAZL</span>
               </h1>
-              <div className="hero-image-wrapper" ref={heroImageRef}>
+              <div
+                className="hero-image-wrapper"
+                ref={(el) => {
+                  heroImageRef.current = el;
+                  parallaxRef.current = el;
+                }}
+                style={{ willChange: "transform", transformStyle: "preserve-3d" }}
+              >
                 <img src={profileImage} className="hero-image" alt="Jaz profile" />
                 <div className="hero-image-gradient" />
               </div>
@@ -200,12 +277,17 @@ function Hero() {
           {/* BOTTOM CONTENT */}
           <div className="Bottom-section">
             <div className="hero-content" ref={heroContentRef}>
-              <h2>UI Developer</h2>
+              <h2 className="typing-title">
+                {displayed}<span className="typing-cursor">|</span>
+              </h2>
               <p>
                 Architecting seamless user experiences with<br /> clean code
                 and bold design.
               </p>
-              <button className="button-primary">Let's Collaborate</button>
+              <a href="https://mail.google.com/mail/?view=cm&to=jaseel.vpmpd@gmail.com" target="_blank"><button className="button-primary">
+                <span className="btn-text">Let's Collaborate</span>
+                <span className="btn-arrow">→</span>
+              </button></a>
             </div>
             <div ref={socialLinksRef}><SocialLinks /></div>
           </div>

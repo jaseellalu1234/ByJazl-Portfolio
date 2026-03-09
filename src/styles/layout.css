@@ -82,6 +82,29 @@
   margin-bottom: var(--space-xs);
 }
 
+.typing-title {
+  min-height: 1.4em;
+}
+
+.typing-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  font-weight: 300;
+  animation: blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
 .hero-content p {
   color: var(--color-muted);
   margin-bottom: var(--space-xs);
@@ -95,6 +118,40 @@
   padding: 12px 20px;
   border-radius: var(--radius-pill);
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  overflow: hidden;
+  position: relative;
+  transition: gap 0.3s ease, padding-right 0.3s ease, background 0.3s ease;
+}
+
+.btn-text {
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.btn-arrow {
+  display: inline-block;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  font-size: 1.1em;
+  line-height: 1;
+}
+
+.button-primary:hover {
+  gap: 8px;
+  background: #333;
+}
+
+.button-primary:hover .btn-text {
+  transform: translateX(-2px);
+}
+
+.button-primary:hover .btn-arrow {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /* ── Hero image wrapper (desktop) ───────────────── */
