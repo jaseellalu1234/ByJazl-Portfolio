@@ -185,7 +185,10 @@ function Works() {
                     />
 
                     {/* Slide panel */}
-                    <div className={`works-panel${panelVisible ? " works-panel--visible" : ""}`}>
+                    <div
+                        className={`works-panel${panelVisible ? " works-panel--visible" : ""}`}
+                        data-lenis-prevent="true"
+                    >
                         {/* Close button */}
                         <button className="works-panel-close" onClick={closePanel} aria-label="Close">
                             ✕
@@ -236,10 +239,10 @@ function Works() {
                                     ))}
                                 </ul>
                             </div>
+                        </div>
 
-                            <hr className="works-panel-divider" />
-
-                            {/* Links */}
+                        {/* Sticky Footer Links */}
+                        <div className={`works-panel-footer${panelVisible ? " works-panel-footer--visible" : ""}`}>
                             <div className="works-panel-links">
                                 {selected.liveDemo && (
                                     <a href={selected.liveDemo} target="_blank" rel="noopener noreferrer" className="works-panel-pill">
