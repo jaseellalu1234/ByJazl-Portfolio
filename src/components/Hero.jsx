@@ -1,4 +1,5 @@
 import profileImage from "../assets/images/Profile-img.png";
+import resume from "../assets/images/JASEEL VP - RESUME.pdf";
 import SocialLinks from "./Social-Button";
 import PageIntro from "./PageIntro";
 import { useState, useRef, useEffect } from "react";
@@ -12,6 +13,7 @@ function Hero() {
   const [navDark, setNavDark] = useState(false);
   const [navHidden, setNavHidden] = useState(false);
   const hasPlayed = sessionStorage.getItem("introPlayed");
+  const [badgeOpen, setBadgeOpen] = useState(false);
 
   // Parallax image effect
   const parallaxRef = useRef(null);
@@ -211,9 +213,32 @@ function Hero() {
         <div className="container">
           {/* TOP BAR */}
           <div className="hero-top">
-            <div className="availability-badge" ref={badgeRef}>
-              <span className="status-dot"></span>
-              <span className="badge-text">Available<span className="badge-text-full"> for New Project</span></span>
+            <div
+              className="availability-badge"
+              ref={badgeRef}
+              onClick={() => setBadgeOpen(!badgeOpen)}
+            >
+              <div className="badge-header">
+                <span className="status-dot"></span>
+                <span className="badge-text">Available<span className="badge-text-full"> for New Project</span></span>
+                <svg className={`badge-chevron ${badgeOpen ? 'open' : ''}`} width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </div>
+
+              {/* Dropdown Menu */}
+              <div className={`badge-dropdown ${badgeOpen ? 'open' : ''}`}>
+                <a href={resume} target="_blank" rel="noopener noreferrer" className="badge-dropdown-item" onClick={(e) => e.stopPropagation()}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  Download Resume
+                </a>
+                <a href="https://mail.google.com/mail/?view=cm&to=jaseel.vpmpd@gmail.com" target="_blank" rel="noopener noreferrer" className="badge-dropdown-item" onClick={(e) => e.stopPropagation()}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                  Email Me
+                </a>
+                <a href="https://www.linkedin.com/in/jaseel-vp-a136121a0/" target="_blank" rel="noopener noreferrer" className="badge-dropdown-item" onClick={(e) => e.stopPropagation()}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                  LinkedIn
+                </a>
+              </div>
             </div>
             <div className="logo" ref={logoRef}>Jaz.</div>
             <button
