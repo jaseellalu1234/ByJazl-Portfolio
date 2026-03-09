@@ -3,7 +3,32 @@ import project1 from "../assets/images/project-3.jpg";
 import project2 from "../assets/images/project-5.jpg";
 import project3 from "../assets/images/project-6.jpg";
 import project4 from "../assets/images/project-7.jpg";
+import { FaReact, FaSass, FaStripe } from "react-icons/fa";
+import {
+    SiJavascript,
+    SiTailwindcss,
+    SiFramer,
+    SiGreensock,
+    SiNextdotjs,
+    SiTypescript,
+    SiRedux,
+    SiStyledcomponents
+} from "react-icons/si";
 import "../styles/works.css";
+
+const techIcons = {
+    "React": <FaReact />,
+    "JavaScript": <SiJavascript />,
+    "Tailwind CSS": <SiTailwindcss />,
+    "Framer Motion": <SiFramer />,
+    "GSAP": <SiGreensock />,
+    "Next.js": <SiNextdotjs />,
+    "TypeScript": <SiTypescript />,
+    "SCSS": <FaSass />,
+    "Redux": <SiRedux />,
+    "Stripe": <FaStripe />,
+    "Styled Components": <SiStyledcomponents />
+};
 
 const projects = [
     {
@@ -223,9 +248,14 @@ function Works() {
                             {/* Tech Stack */}
                             <div className="works-panel-section">
                                 <h3>Tech Stack</h3>
-                                <p className="works-panel-tech">
-                                    {selected.techStack && selected.techStack.join(" • ")}
-                                </p>
+                                <ul className="works-panel-tech-list">
+                                    {selected.techStack && selected.techStack.map((tech) => (
+                                        <li key={tech} className="works-panel-tech-item">
+                                            {techIcons[tech] && <span className="tech-icon">{techIcons[tech]}</span>}
+                                            <span className="tech-name">{tech}</span>
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
 
                             <hr className="works-panel-divider" />
