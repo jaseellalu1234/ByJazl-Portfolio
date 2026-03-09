@@ -230,11 +230,17 @@
         width: 100% !important;
         max-width: 100% !important;
         bottom: 0;
-        top: auto !important;
-        height: 85vh;
-        height: 85dvh;
-        border-radius: 20px 20px 0 0 !important;
+        top: 15dvh !important;
+        /* Start lower to ensure visibility */
+        height: auto !important;
+        /* Let content dictate height up to max */
+        min-height: 85dvh;
+        border-radius: 24px 24px 0 0 !important;
         transform: translateY(100%) !important;
+        overflow: hidden;
+        /* Header will be sticky */
+        background: rgba(255, 255, 255, 0.95);
+        /* More solid on mobile for readability */
     }
 
     .works-panel-footer {
@@ -305,6 +311,28 @@
     transform: translateX(0);
 }
 
+/* Panel Header (Sticky on Mobile) */
+.works-panel-header {
+    display: none;
+    /* Default hidden, only meaningful on mobile */
+}
+
+@media (max-width: 768px) {
+    .works-panel-header {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: calc(14px + env(safe-area-inset-top, 0px)) 20px 14px;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+}
+
 /* Close button */
 .works-panel-close {
     position: absolute;
@@ -323,6 +351,16 @@
     justify-content: center;
     transition: all 0.2s ease;
     z-index: 10;
+}
+
+@media (max-width: 768px) {
+    .works-panel-close {
+        position: relative;
+        top: 0;
+        right: 0;
+        width: 32px;
+        height: 32px;
+    }
 }
 
 .works-panel-close:hover {

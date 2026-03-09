@@ -214,10 +214,12 @@ function Works() {
                         className={`works-panel${panelVisible ? " works-panel--visible" : ""}`}
                         data-lenis-prevent="true"
                     >
-                        {/* Close button */}
-                        <button className="works-panel-close" onClick={closePanel} aria-label="Close">
-                            ✕
-                        </button>
+                        {/* Panel header for sticky close button on mobile */}
+                        <div className="works-panel-header">
+                            <button className="works-panel-close" onClick={closePanel} aria-label="Close">
+                                ✕
+                            </button>
+                        </div>
 
                         <div className={`works-panel-content${panelVisible ? " works-panel-content--visible" : ""}`}>
                             {/* Project Image */}

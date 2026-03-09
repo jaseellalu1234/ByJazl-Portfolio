@@ -671,6 +671,7 @@
     justify-content: center;
     position: fixed;
     inset: 0;
+    padding-top: env(safe-area-inset-top, 0px);
     background: white;
     z-index: 300;
     transform-origin: top right;
