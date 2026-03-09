@@ -27,6 +27,12 @@ function Hero() {
     };
 
     const animate = () => {
+      // Skip parallax on mobile
+      if (window.innerWidth <= 768) {
+        rafId.current = requestAnimationFrame(animate);
+        return;
+      }
+
       // Smooth lerp (ease factor 0.06 = gentle lag)
       current.current.x += (mouse.current.x - current.current.x) * 0.06;
       current.current.y += (mouse.current.y - current.current.y) * 0.06;
@@ -226,16 +232,14 @@ function Hero() {
                 <span className="hero-by">BY</span>
                 <span className="hero-name">JAZL</span>
               </h1>
-              <div
-                className="hero-image-wrapper"
-                ref={(el) => {
-                  heroImageRef.current = el;
-                  parallaxRef.current = el;
-                }}
-                style={{ willChange: "transform", transformStyle: "preserve-3d" }}
-              >
-                <img src={profileImage} className="hero-image" alt="Jaz profile" />
-                <div className="hero-image-gradient" />
+              <div className="hero-image-wrapper" ref={heroImageRef}>
+                <div
+                  ref={parallaxRef}
+                  style={{ willChange: "transform", transformStyle: "preserve-3d" }}
+                >
+                  <img src={profileImage} className="hero-image" alt="Jaz profile" />
+                  <div className="hero-image-gradient" />
+                </div>
               </div>
             </div>
           </div>
