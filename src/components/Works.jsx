@@ -1,56 +1,90 @@
 import { useState, useEffect } from "react";
-import project1 from "../assets/images/project-1.png";
-import project2 from "../assets/images/project-2.png";
+import project1 from "../assets/images/project-3.jpg";
+import project2 from "../assets/images/project-5.jpg";
+import project3 from "../assets/images/project-6.jpg";
+import project4 from "../assets/images/project-7.jpg";
 import "../styles/works.css";
 
 const projects = [
     {
         id: 1,
         title: "Voyon Folks – HRMS Web App Landing Page",
-        tag: "Exploration",
+        tag: "UI Design",
         image: project1,
         categories: ["Web Designing"],
-        links: ["Landing Page", "Demo"],
+        role: "Frontend Developer",
+        year: "2024",
+        type: "Web Application",
         description:
             "A modern, responsive landing page for Voyon Folks' HRMS web application. Focused on clear hierarchy, conversion-driven layout, and clean UI patterns.",
-        year: "2024",
-        role: "UI Designer & Developer",
+        techStack: ["React", "JavaScript", "Tailwind CSS", "Framer Motion"],
+        features: [
+            "Responsive design",
+            "Interactive components",
+            "Conversion-optimized layout",
+        ],
+        liveDemo: "https://example.com/demo",
+        sourceCode: "https://github.com/example/code",
     },
     {
         id: 2,
         title: "Voyon Folks – HRMS Web App Landing Page",
-        tag: "Exploration",
+        tag: "Landing Page",
         image: project2,
         categories: ["Web Designing"],
-        links: ["Landing Page", "Demo"],
+        role: "Frontend Developer",
+        year: "2024",
+        type: "Web Application",
         description:
             "Second iteration of the HRMS landing page with refined visual language, improved mobile responsiveness, and enhanced CTA flow.",
-        year: "2024",
-        role: "UI Designer & Developer",
+        techStack: ["React", "Tailwind CSS", "GSAP"],
+        features: [
+            "Complex animations",
+            "Performance optimized",
+            "Accessible components",
+        ],
+        liveDemo: "https://example.com/demo",
+        sourceCode: "https://github.com/example/code",
     },
     {
         id: 3,
         title: "Brand Identity – Creative Director Portfolio",
-        tag: "Branding",
-        image: project1,
+        tag: "Dashboard",
+        image: project3,
         categories: ["Web Designing"],
-        links: ["Live Site", "Case Study"],
+        role: "Frontend Developer",
+        year: "2024",
+        type: "Web Application",
         description:
             "Full brand identity system and portfolio website for a creative director. Includes typography system, color palette, and a bespoke portfolio layout.",
-        year: "2024",
-        role: "Brand Designer",
+        techStack: ["Next.js", "TypeScript", "SCSS", "Framer Motion"],
+        features: [
+            "Custom routing transitions",
+            "Dynamic themed layouts",
+            "CMS integration",
+        ],
+        liveDemo: "https://example.com/demo",
+        sourceCode: "https://github.com/example/code",
     },
     {
         id: 4,
         title: "Reflect Fashion – E-commerce Experience",
-        tag: "UI Design",
-        image: project2,
+        tag: "E-commerce",
+        image: project4,
         categories: ["Web Designing", "Creative Works"],
-        links: ["Landing Page", "Demo"],
+        role: "Frontend Developer",
+        year: "2024",
+        type: "Web Application",
         description:
             "High-fidelity e-commerce UI for a fashion brand. Features editorial-style product display, smooth transitions, and a full video campaign.",
-        year: "2024",
-        role: "UI Designer & Video Editor",
+        techStack: ["React", "Redux", "Stripe", "Styled Components"],
+        features: [
+            "Shopping cart state management",
+            "Checkout flow integration",
+            "Advanced product filtering",
+        ],
+        liveDemo: "https://example.com/demo",
+        sourceCode: "https://github.com/example/code",
     },
 ];
 
@@ -133,11 +167,7 @@ function Works() {
                             <div className="works-card-info">
                                 <h3 className="works-card-title">{project.title}</h3>
                                 <div className="works-card-links">
-                                    {project.links.map((link) => (
-                                        <span key={link} className="works-link-pill">
-                                            {link}
-                                        </span>
-                                    ))}
+                                    <span className="works-link-pill">View Project</span>
                                 </div>
                             </div>
                         </div>
@@ -162,32 +192,65 @@ function Works() {
                         </button>
 
                         <div className={`works-panel-content${panelVisible ? " works-panel-content--visible" : ""}`}>
-                            {/* Project image */}
+                            {/* Project Image */}
                             <div className="works-panel-image">
                                 <img src={selected.image} alt={selected.title} />
-                                <span className="works-panel-tag">{selected.tag}</span>
                             </div>
 
-                            {/* Meta row */}
-                            <div className="works-panel-meta">
-                                <span>{selected.year}</span>
-                                <span className="works-panel-dot">·</span>
-                                <span>{selected.role}</span>
-                            </div>
+                            <hr className="works-panel-divider" />
 
-                            {/* Title */}
+                            {/* Title & Meta Data */}
                             <h2 className="works-panel-title">{selected.title}</h2>
+                            <div className="works-panel-meta-list">
+                                <p><strong>Role:</strong> {selected.role}</p>
+                                <p><strong>Year:</strong> {selected.year}</p>
+                                <p><strong>Type:</strong> {selected.type}</p>
+                            </div>
+
+                            <hr className="works-panel-divider" />
 
                             {/* Description */}
-                            <p className="works-panel-desc">{selected.description}</p>
+                            <div className="works-panel-section">
+                                <h3>Description</h3>
+                                <p className="works-panel-desc">{selected.description}</p>
+                            </div>
 
-                            {/* Link pills */}
+                            <hr className="works-panel-divider" />
+
+                            {/* Tech Stack */}
+                            <div className="works-panel-section">
+                                <h3>Tech Stack</h3>
+                                <p className="works-panel-tech">
+                                    {selected.techStack && selected.techStack.join(" • ")}
+                                </p>
+                            </div>
+
+                            <hr className="works-panel-divider" />
+
+                            {/* Features */}
+                            <div className="works-panel-section">
+                                <h3>Features</h3>
+                                <ul className="works-panel-features">
+                                    {selected.features && selected.features.map((feature, idx) => (
+                                        <li key={idx}>• {feature}</li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            <hr className="works-panel-divider" />
+
+                            {/* Links */}
                             <div className="works-panel-links">
-                                {selected.links.map((link) => (
-                                    <a key={link} href="#" className="works-panel-pill">
-                                        {link} <span>↗</span>
+                                {selected.liveDemo && (
+                                    <a href={selected.liveDemo} target="_blank" rel="noopener noreferrer" className="works-panel-pill">
+                                        Live Demo <span>↗</span>
                                     </a>
-                                ))}
+                                )}
+                                {selected.sourceCode && (
+                                    <a href={selected.sourceCode} target="_blank" rel="noopener noreferrer" className="works-panel-pill works-panel-pill--outline">
+                                        View Code <span>↗</span>
+                                    </a>
+                                )}
                             </div>
                         </div>
                     </div>
