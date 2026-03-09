@@ -45,7 +45,7 @@ const projects = [
         title: "Reflect Fashion – E-commerce Experience",
         tag: "UI Design",
         image: project2,
-        categories: ["Web Designing", "Video Editing"],
+        categories: ["Web Designing", "Creative Works"],
         links: ["Landing Page", "Demo"],
         description:
             "High-fidelity e-commerce UI for a fashion brand. Features editorial-style product display, smooth transitions, and a full video campaign.",
@@ -54,10 +54,10 @@ const projects = [
     },
 ];
 
-const filters = ["All", "Web Designing", "Video Editing"];
+const filters = ["Web Designing", "Creative Works"];
 
 function Works() {
-    const [active, setActive] = useState("All");
+    const [active, setActive] = useState("Web Designing");
     const [selected, setSelected] = useState(null);
     const [panelVisible, setPanelVisible] = useState(false);
 
@@ -76,10 +76,7 @@ function Works() {
         };
     }, [panelVisible]);
 
-    const filtered =
-        active === "All"
-            ? projects
-            : projects.filter((p) => p.categories.includes(active));
+    const filtered = projects.filter((p) => p.categories.includes(active));
 
     const openPanel = (project) => {
         setSelected(project);

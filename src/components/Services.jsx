@@ -29,7 +29,7 @@ const services = [
     },
     {
         id: "video",
-        title: "VIDEO EDITING",
+        title: "CREATIVE WORKS",
         description:
             "Cinematic edits, reels, and motion graphics that keep your audience engaged.",
         image: serviceVideoImg,
