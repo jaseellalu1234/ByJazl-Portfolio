@@ -33,7 +33,7 @@ const techIcons = {
 const projects = [
     {
         id: 1,
-        title: "Voyon Folks – HRMS Web App Landing Page",
+        title: "TaskNova – Task Management Web App",
         tag: "UI Design",
         image: project1,
         categories: ["Web Designing"],
@@ -53,7 +53,7 @@ const projects = [
     },
     {
         id: 2,
-        title: "Voyon Folks – HRMS Web App Landing Page",
+        title: "Urban – E-Commerce Website Landing Page",
         tag: "Landing Page",
         image: project2,
         categories: ["Web Designing"],
@@ -73,7 +73,7 @@ const projects = [
     },
     {
         id: 3,
-        title: "Brand Identity – Creative Director Portfolio",
+        title: "DataVista – Analytics Dashboard",
         tag: "Dashboard",
         image: project3,
         categories: ["Web Designing"],
