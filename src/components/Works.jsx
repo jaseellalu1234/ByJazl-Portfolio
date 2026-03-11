@@ -188,6 +188,9 @@ function Works() {
                             <div className="works-card-image">
                                 <span className="works-card-tag">{project.tag}</span>
                                 <img src={project.image} alt={project.title} />
+                                <div className="works-card-coming-soon">
+                                    <span>Coming Soon</span>
+                                </div>
                             </div>
                             <div className="works-card-info">
                                 <h3 className="works-card-title">{project.title}</h3>
@@ -225,6 +228,9 @@ function Works() {
                             {/* Project Image */}
                             <div className="works-panel-image">
                                 <img src={selected.image} alt={selected.title} />
+                                <div className="works-panel-image-coming-soon">
+                                    <span>Coming Soon</span>
+                                </div>
                             </div>
 
                             <hr className="works-panel-divider" />

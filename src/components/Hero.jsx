@@ -4,6 +4,7 @@ import SocialLinks from "./Social-Button";
 import PageIntro from "./PageIntro";
 import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
+import { useLenis } from "lenis/react";
 
 const TITLES = ["UI Developer", "React Developer", "Creative Designer"];
 
@@ -175,24 +176,13 @@ function Hero() {
     return () => observer.disconnect();
   }, []);
 
-  // Hide nav when contact section is in view
-  useEffect(() => {
+  // Hide nav when contact section is in view — uses Lenis scroll position directly
+  useLenis(({ scroll }) => {
     const contactSection = document.getElementById("contact");
     if (!contactSection) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setNavHidden(true);
-        } else {
-          setNavHidden(false);
-        }
-      },
-      { threshold: 0.15 }
-    );
-    observer.observe(contactSection);
-    return () => observer.disconnect();
-  }, []);
+    // Compare Lenis scroll position against contact's absolute page offset
+    setNavHidden(scroll + window.innerHeight * 0.85 >= contactSection.offsetTop);
+  });
 
   // Hide elements initially — only on first load
   useEffect(() => {
