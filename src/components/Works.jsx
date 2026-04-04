@@ -3,6 +3,7 @@ import project1 from "../assets/images/project-3.jpg";
 import project2 from "../assets/images/project-5.jpg";
 import project3 from "../assets/images/project-6.jpg";
 import project4 from "../assets/images/project-7.jpg";
+import uiVideo from "../assets/images/UI.mp4";
 import { FaReact, FaSass, FaStripe } from "react-icons/fa";
 import {
     SiJavascript,
@@ -12,6 +13,7 @@ import {
     SiNextdotjs,
     SiTypescript,
     SiRedux,
+    SiFigma,
     SiStyledcomponents
 } from "react-icons/si";
 import "../styles/works.css";
@@ -26,6 +28,7 @@ const techIcons = {
     "TypeScript": <SiTypescript />,
     "SCSS": <FaSass />,
     "Redux": <SiRedux />,
+    "Figma": <SiFigma />,
     "Stripe": <FaStripe />,
     "Styled Components": <SiStyledcomponents />
 };
@@ -36,7 +39,7 @@ const projects = [
         title: "TaskNova – Task Management Web App",
         tag: "UI Design",
         image: project1,
-        categories: ["Web Designing"],
+        categories: ["Web Development"],
         role: "Frontend Developer",
         year: "2024",
         type: "Web Application",
@@ -56,7 +59,7 @@ const projects = [
         title: "Urban – E-Commerce Website Landing Page",
         tag: "Landing Page",
         image: project2,
-        categories: ["Web Designing"],
+        categories: ["Web Development"],
         role: "Frontend Developer",
         year: "2024",
         type: "Web Application",
@@ -76,7 +79,7 @@ const projects = [
         title: "DataVista – Analytics Dashboard",
         tag: "Dashboard",
         image: project3,
-        categories: ["Web Designing"],
+        categories: ["Web Development"],
         role: "Frontend Developer",
         year: "2024",
         type: "Web Application",
@@ -93,30 +96,31 @@ const projects = [
     },
     {
         id: 4,
-        title: "Reflect Fashion – E-commerce Experience",
-        tag: "E-commerce",
+        title: "Furni – E-commerce Landing Page",
+        tag: "Landing Page",
         image: project4,
-        categories: ["Web Designing", "Creative Works"],
-        role: "Frontend Developer",
+        video: uiVideo,
+        categories: ["UI/UX Designing"],
+        role: "UI Developer",
         year: "2024",
-        type: "Web Application",
+        type: "UI Design",
         description:
             "High-fidelity e-commerce UI for a fashion brand. Features editorial-style product display, smooth transitions, and a full video campaign.",
-        techStack: ["React", "Redux", "Stripe", "Styled Components"],
+        techStack: ["Figma"],
         features: [
             "Shopping cart state management",
             "Checkout flow integration",
             "Advanced product filtering",
         ],
-        liveDemo: "https://example.com/demo",
+        liveDemo: "https://embed.figma.com/design/ePHW2spNaK1uvIJAp85c6u/Furni?node-id=1-35&embed-host=share",
         sourceCode: "https://github.com/example/code",
     },
 ];
 
-const filters = ["Web Designing", "Creative Works"];
+const filters = ["Web Development", "UI/UX Designing"];
 
 function Works() {
-    const [active, setActive] = useState("Web Designing");
+    const [active, setActive] = useState("Web Development");
     const [selected, setSelected] = useState(null);
     const [panelVisible, setPanelVisible] = useState(false);
 
@@ -187,10 +191,16 @@ function Works() {
                         >
                             <div className="works-card-image">
                                 <span className="works-card-tag">{project.tag}</span>
-                                <img src={project.image} alt={project.title} />
-                                <div className="works-card-coming-soon">
-                                    <span>Coming Soon</span>
-                                </div>
+                                <img
+                                    src={project.image}
+                                    alt={project.title}
+                                    style={project.categories.includes("UI/UX Designing") ? { filter: "none" } : {}}
+                                />
+                                {!project.categories.includes("UI/UX Designing") && (
+                                    <div className="works-card-coming-soon">
+                                        <span>Coming Soon</span>
+                                    </div>
+                                )}
                             </div>
                             <div className="works-card-info">
                                 <h3 className="works-card-title">{project.title}</h3>
@@ -227,10 +237,24 @@ function Works() {
                         <div className={`works-panel-content${panelVisible ? " works-panel-content--visible" : ""}`}>
                             {/* Project Image */}
                             <div className="works-panel-image">
-                                <img src={selected.image} alt={selected.title} />
-                                <div className="works-panel-image-coming-soon">
-                                    <span>Coming Soon</span>
-                                </div>
+                                {selected.video ? (
+                                    <video
+                                        src={selected.video}
+                                        controls
+                                        autoPlay
+                                        loop
+                                        muted
+                                        playsInline
+                                        style={{ width: "100%", height: "auto", display: "block", objectFit: "cover" }}
+                                    />
+                                ) : (
+                                    <>
+                                        <img src={selected.image} alt={selected.title} />
+                                        <div className="works-panel-image-coming-soon">
+                                            <span>Coming Soon</span>
+                                        </div>
+                                    </>
+                                )}
                             </div>
 
                             <hr className="works-panel-divider" />
